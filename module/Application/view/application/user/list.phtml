@@ -1,0 +1,58 @@
+qsdqsdqsd
+<div class="panel panel-transparent">
+    <div class="panel-heading">
+        <div class="pull-right">
+            <div class="col-xs-12">
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div id="tableWithDynamicRows_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="table-responsive">
+                <table id="clubs-table" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__club_name')?></th>
+                        <th><?=$this->translate('__club_short_name')?></th>
+                        <th><?=$this->translate('__club_identify')?></th>
+                        <th><?=$this->translate('__label_club_status')?></th>
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__club_name')?></th>
+                        <th><?=$this->translate('__club_short_name')?></th>
+                        <th><?=$this->translate('__club_identify')?></th>
+                        <th><?=$this->translate('__label_club_status')?></th>
+                    </tr>
+                    </tfoot>
+
+                    <tbody>
+
+                    <?php
+
+                    /**@var  \Application\Entity\User $user */
+                    foreach($this->users as $user)
+                    {
+                        ?>
+
+                        <tr>
+                            <td><?=$user->getId()?></td>
+                            <td><?=$user->getFirstName()?></td>
+                            <td><?=$user->getLastName()?></td>
+                            <td><?=$user->getAge()?></td>
+                            <td><?=$user->getSex()?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
