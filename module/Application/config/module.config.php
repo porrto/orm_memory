@@ -81,6 +81,65 @@ return array(
                                 ],
                         ]
                 ],
+            'ski-level'        =>
+                [
+                    'type'          => 'Literal',
+                    'options'       =>
+                        [
+                            'route'    => '/ski-level',
+                            'defaults' =>
+                                [
+                                    '__NAMESPACE__' => 'Application\Controller',
+                                    'controller'    => 'SKiLevel'
+                                ]
+                        ],
+                    'may_terminate' => false,
+                    'child_routes'  =>
+                        [
+                            'add'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/add',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ]
+                                ],
+                            'edit'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/edit[/:ski-level_id]',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ],
+                                    'constraints' => array(
+                                        'ski-level_id' => '[0-9]+'
+                                    ),
+                                ],
+                            'list'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/list',
+                                            'defaults' => ['action' => 'list']
+                                        ]
+                                ],
+                            'delete'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/delete(/:ski-level_id]',
+                                            'defaults' => ['action' => 'delete']
+                                        ],
+                                    'constraints' => array(
+                                        'ski-level_id' => '[0-9]+'
+                                    ),
+                                ],
+                        ]
+                ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -135,7 +194,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => Controller\IndexController::class,
-            'Application\Controller\User' => Controller\UserController::class
+            'Application\Controller\User' => Controller\UserController::class,
+            'Application\Controller\SkiLevel' => Controller\SkiLevelController::class,
         ),
     ),
     'view_manager' => array(

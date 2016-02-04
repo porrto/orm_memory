@@ -104,6 +104,9 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
             'lastName' => array(
                 'required' => false
             ),
+            'skiLevel' => array(
+                'required' => false
+            ),
         );
     }
 

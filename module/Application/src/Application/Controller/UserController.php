@@ -9,7 +9,7 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Helper\ViewModel;
+use Zend\View\Model\ViewModel;
 
 class UserController  extends AbstractActionController
 {
@@ -23,7 +23,7 @@ class UserController  extends AbstractActionController
             ->getRepository('Application\Entity\User')
             ->findAll();
 
-        $viewModel =  new \Zend\View\Model\ViewModel(array(
+        $viewModel =  new ViewModel(array(
             'users' => $users,
         ));
 
@@ -62,7 +62,7 @@ class UserController  extends AbstractActionController
             }
         }
 
-        $viewModel =  new \Zend\View\Model\ViewModel(array(
+        $viewModel =  new ViewModel(array(
             'form' => $form,
         ));
 

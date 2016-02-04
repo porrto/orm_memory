@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Form\SkiLevel;
 use Application\Form\User;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -51,6 +52,15 @@ class Module
                     $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
                     return $form;
                 },
+                'application.form.skiLevel' => function (\Zend\Form\FormElementManager $fem) {
+                    $em = $fem->getServiceLocator()->get('entity_manager');
+
+                    $form = new SkiLevel();
+                    $form->setObjectManager($em);
+                    $form->setObject(new \Application\Entity\SkiLevel());
+                    $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
+                    return $form;
+                },
             )
         );
     }
@@ -59,6 +69,7 @@ class Module
         return array(
             'invokables' => array(
                 'application.service.user' => 'Application\Service\User',
+                'application.service.skiLevel' => 'Application\Service\SkiLevel',
             )
         );
     }
