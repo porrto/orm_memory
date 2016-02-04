@@ -22,9 +22,8 @@ return array(
                     'user'     => 'root',
                     'password' => '',
                     'dbname'   => 'orm_memory',
-                    //  'driverOptions' => array(
-                    //    1002 => 'SET NAMES utf8'
-                    //),
+                    'charset' => 'utf8',
+                    'driverOptions' => array (1002 => 'SET NAMES utf8'),
                 )
             )
         ),

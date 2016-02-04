@@ -14,6 +14,7 @@ use Zend\View\Helper\ViewModel;
 class UserController  extends AbstractActionController
 {
     public function listAction() {
+
         $serviceLocator = $this->getServiceLocator();
 
         /** @var \Application\Entity\User $users */
@@ -32,9 +33,34 @@ class UserController  extends AbstractActionController
     }
 
     public function addOrEditAction() {
+
         $serviceLocator = $this->getServiceLocator();
-       /** @var \Application\Form\User $form */
-       $form = $serviceLocator->get('formElementManager')->get('application.form.user');
+
+        /** @var \Application\Form\User $form */
+        $form = $serviceLocator->get('formElementManager')->get('application.form.user');
+        /**@var \Application\Service\User $userService */
+        $userService = $serviceLocator->get('application.service.user');
+
+        $userService->addSkiLevelToUserForm($form);
+
+        $data = $this->prg();
+
+        if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
+            return $data;
+        }
+
+        if ($data != false) {
+            $form->setData($data);
+            if ($form->isValid()) {
+
+                /** @var \Application\Entity\User $user */
+                $user = $form->getData();
+
+                $userService->save($user);
+
+                $this->redirect()->toRoute('user/list');
+            }
+        }
 
         $viewModel =  new \Zend\View\Model\ViewModel(array(
             'form' => $form,

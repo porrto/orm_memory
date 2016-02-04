@@ -64,10 +64,10 @@ class SkiLevel extends \Application\Entity\SkiLevel implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'user');
+            return array('__isInitialized__', 'id', 'name', 'user');
         }
 
-        return array('__isInitialized__', 'id', 'user');
+        return array('__isInitialized__', 'id', 'name', 'user');
     }
 
     /**
@@ -173,4 +173,74 @@ class SkiLevel extends \Application\Entity\SkiLevel implements \Doctrine\ORM\Pro
     }
 
     
+    /**
+     * {@inheritDoc}
+     */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setId($id)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($id));
+
+        return parent::setId($id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
+
+        return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setName($name)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
+
+        return parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+
+        return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser($user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
+
+        return parent::setUser($user);
+    }
+
 }

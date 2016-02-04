@@ -1,9 +1,9 @@
-qsdqsdqsd
 <div class="panel panel-transparent">
     <div class="panel-heading">
         <div class="pull-right">
             <div class="col-xs-12">
-
+                <a href="<?= $this->url('user/add')?>" id="add-club" class="btn btn-primary btn-cons">
+                    <i class="fa fa-plus"></i> <?=$this->translate('__label_user_add')?></a>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -14,20 +14,24 @@ qsdqsdqsd
                     <thead>
                     <tr>
                         <th><?=$this->translate('__label_id')?></th>
-                        <th><?=$this->translate('__club_name')?></th>
-                        <th><?=$this->translate('__club_short_name')?></th>
-                        <th><?=$this->translate('__club_identify')?></th>
-                        <th><?=$this->translate('__label_club_status')?></th>
+                        <th><?=$this->translate('__user_first_name')?></th>
+                        <th><?=$this->translate('__user_last_name')?></th>
+                        <th><?=$this->translate('__user_age')?></th>
+                        <th><?=$this->translate('__user_sex')?></th>
+                        <th><?=$this->translate('__user_size')?></th>
+                        <th><?=$this->translate('__user_ski_level')?></th>
                     </tr>
                     </thead>
 
                     <tfoot>
                     <tr>
                         <th><?=$this->translate('__label_id')?></th>
-                        <th><?=$this->translate('__club_name')?></th>
-                        <th><?=$this->translate('__club_short_name')?></th>
-                        <th><?=$this->translate('__club_identify')?></th>
-                        <th><?=$this->translate('__label_club_status')?></th>
+                        <th><?=$this->translate('__user_first_name')?></th>
+                        <th><?=$this->translate('__user_last_name')?></th>
+                        <th><?=$this->translate('__user_age')?></th>
+                        <th><?=$this->translate('__user_sex')?></th>
+                        <th><?=$this->translate('__user_size')?></th>
+                        <th><?=$this->translate('__user_ski_level')?></th>
                     </tr>
                     </tfoot>
 
@@ -46,6 +50,8 @@ qsdqsdqsd
                             <td><?=$user->getLastName()?></td>
                             <td><?=$user->getAge()?></td>
                             <td><?=$user->getSex()?></td>
+                            <td><?=$user->getSize()?></td>
+                            <td><?=$user->getSkiLevel()->getName()?></td>
                         </tr>
                         <?php
                     }

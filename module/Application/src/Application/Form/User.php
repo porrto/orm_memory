@@ -6,11 +6,13 @@ use Application\Persistence\ObjectManagerAwareTrait;
 use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\ServiceManager\ServiceLocatorAwareTrait;
 
 class User extends Form implements InputFilterProviderInterface, ObjectManagerAwareInterface
 {
 
     use ObjectManagerAwareTrait;
+    use ServiceLocatorAwareTrait;
 
     public function init()
     {
@@ -37,7 +39,7 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
         ));
 
         $this->add(array(
-            'type' => 'text',
+            'type' => 'number',
             'name' => 'age',
             'attributes' => ['class' => 'form-control'],
             'options' => array(
@@ -52,6 +54,32 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
             'options' => array(
                 'label' => '__user_sex',
             ),
+        ));
+
+        $this->add(array(
+            'type' => 'number',
+            'name' => 'size',
+            'attributes' => ['class' => 'form-control'],
+            'options' => array(
+                'label' => '__user_size',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'skiLevel',
+            'type' => 'objectselect',
+            'attributes' => array(
+                'class' => 'select2 full-width',
+            ),
+            'options' => array(
+                'label' => '__user_ski_level',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                ),
+                'object_manager' => $this->getObjectManager(),
+                'target_class' => 'Application\Entity\User',
+                'property' => 'name'
+            )
         ));
 
         $this->add(array(
