@@ -27,7 +27,7 @@ class User
     /** @ORM\Column(type="integer") */
     protected $size;
 
-    /** @ORM\OneToOne(targetEntity="Application\Entity\Ski", mappedBy="user")   */
+    /** @ORM\OneToMany(targetEntity="Application\Entity\Ski", mappedBy="user", cascade={"persist"})   */
     protected $ski;
 
     /** @ORM\ManyToOne(targetEntity="Application\Entity\SkiLevel", inversedBy="user")   */

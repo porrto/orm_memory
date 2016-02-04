@@ -12,4 +12,12 @@ return array(
     '__label_ski_level_add'     =>      'Ajouter un niveau de ski',
     '__label_save_ski_level'    =>      'Enregistrer le niveau de ski',
     '__label_save_user'         =>      'Enregistrer l\'utilisateur',
+    '__ski_name'                =>      'Nom',
+    '__ski_length'              =>      'Taille',
+    '__ski_is_new'              =>      'Nouveau',
+    '__ski_purchase_date'       =>      'Date d\'achat',
+    '__ski_owner'               =>      'Utilisateur propriétaire',
+    '__label_ski_add'           =>      'Ajouter une paire de ski',
+    '__label_save_ski'          =>      'Enregistrer la paire de ski',
+
 );

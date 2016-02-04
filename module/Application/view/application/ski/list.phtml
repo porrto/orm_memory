@@ -1,0 +1,62 @@
+<div class="panel panel-transparent">
+    <div class="panel-heading">
+        <div class="pull-right">
+            <div class="col-xs-12">
+                <a href="<?= $this->url('ski/add')?>" id="add-club" class="btn btn-primary btn-cons">
+                    <i class="fa fa-plus"></i> <?=$this->translate('__label_ski_add')?></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div id="tableWithDynamicRows_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="table-responsive">
+                <table id="clubs-table" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__ski_name')?></th>
+                        <th><?=$this->translate('__ski_length')?></th>
+                        <th><?=$this->translate('__ski_is_new')?></th>
+                        <th><?=$this->translate('__ski_purchase_date')?></th>
+                        <th><?=$this->translate('__ski_owner')?></th>
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__ski_name')?></th>
+                        <th><?=$this->translate('__ski_length')?></th>
+                        <th><?=$this->translate('__ski_is_new')?></th>
+                        <th><?=$this->translate('__ski_purchase_date')?></th>
+                        <th><?=$this->translate('__ski_owner')?></th>
+                    </tr>
+                    </tfoot>
+
+                    <tbody>
+
+                    <?php
+
+                    /**@var  \Application\Entity\Ski $ski */
+                    foreach($this->skis as $ski)
+                    {
+                        ?>
+
+                        <tr>
+                            <td><?=$ski->getId()?></td>
+                            <td><?=$ski->getName()?></td>
+                            <td><?=$ski->getLength()?></td>
+                            <td>
+                                <?= $ski->getIsNew() == true ? 'Oui' : 'Non' ?></td>
+                            <td><?=$this->dateFormat($ski->getPurchaseDate(), IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, $this->locale());?></td>
+                            <td><?=$ski->getUser()->getFirstName()?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+

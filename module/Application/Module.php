@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Form\Ski;
 use Application\Form\SkiLevel;
 use Application\Form\User;
 use Zend\Mvc\ModuleRouteListener;
@@ -42,7 +43,7 @@ class Module
     public function getFormElementConfig()
     {
         return array(
-            'factories' => array(
+            'factories' => [
                 'application.form.user' => function (\Zend\Form\FormElementManager $fem) {
                     $em = $fem->getServiceLocator()->get('entity_manager');
 
@@ -61,7 +62,16 @@ class Module
                     $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
                     return $form;
                 },
-            )
+                'application.form.ski' => function (\Zend\Form\FormElementManager $fem) {
+                    $em = $fem->getServiceLocator()->get('entity_manager');
+
+                    $form = new Ski();
+                    $form->setObjectManager($em);
+                    $form->setObject(new \Application\Entity\Ski());
+                    $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
+                    return $form;
+                },
+            ],
         );
     }
 
@@ -70,6 +80,17 @@ class Module
             'invokables' => array(
                 'application.service.user' => 'Application\Service\User',
                 'application.service.skiLevel' => 'Application\Service\SkiLevel',
+                'application.service.ski' => 'Application\Service\Ski',
+            )
+        );
+    }
+
+    public function getViewHelperConfig()
+    {
+        return array(
+            'invokables' => array(
+                //Views
+                'locale' => 'Application\View\Helper\Locale',
             )
         );
     }

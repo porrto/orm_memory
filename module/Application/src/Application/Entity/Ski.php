@@ -25,7 +25,7 @@ class Ski
     /** @ORM\Column(type="datetime") */
     protected $purchaseDate;
 
-    /** @ORM\OneToOne(targetEntity="Application\Entity\User", inversedBy="ski")   */
+    /** @ORM\ManyToOne(targetEntity="Application\Entity\User", inversedBy="ski", cascade={"persist"})   */
     protected $user;
 
     function __construct()

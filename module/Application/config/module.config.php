@@ -90,7 +90,7 @@ return array(
                             'defaults' =>
                                 [
                                     '__NAMESPACE__' => 'Application\Controller',
-                                    'controller'    => 'SKiLevel'
+                                    'controller'    => 'SkiLevel'
                                 ]
                         ],
                     'may_terminate' => false,
@@ -136,6 +136,65 @@ return array(
                                         ],
                                     'constraints' => array(
                                         'ski-level_id' => '[0-9]+'
+                                    ),
+                                ],
+                        ]
+                ],
+            'ski'        =>
+                [
+                    'type'          => 'Literal',
+                    'options'       =>
+                        [
+                            'route'    => '/ski',
+                            'defaults' =>
+                                [
+                                    '__NAMESPACE__' => 'Application\Controller',
+                                    'controller'    => 'Ski'
+                                ]
+                        ],
+                    'may_terminate' => false,
+                    'child_routes'  =>
+                        [
+                            'add'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/add',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ]
+                                ],
+                            'edit'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/edit[/:ski_id]',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ],
+                                    'constraints' => array(
+                                        'ski_id' => '[0-9]+'
+                                    ),
+                                ],
+                            'list'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/list',
+                                            'defaults' => ['action' => 'list']
+                                        ]
+                                ],
+                            'delete'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/delete(/:ski_id]',
+                                            'defaults' => ['action' => 'delete']
+                                        ],
+                                    'constraints' => array(
+                                        'ski_id' => '[0-9]+'
                                     ),
                                 ],
                         ]
@@ -196,6 +255,7 @@ return array(
             'Application\Controller\Index' => Controller\IndexController::class,
             'Application\Controller\User' => Controller\UserController::class,
             'Application\Controller\SkiLevel' => Controller\SkiLevelController::class,
+            'Application\Controller\Ski' => Controller\SkiController::class,
         ),
     ),
     'view_manager' => array(
