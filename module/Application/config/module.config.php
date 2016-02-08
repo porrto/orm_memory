@@ -48,7 +48,7 @@ return array(
                                 ],
                             'edit'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
                                             'route'    => '/edit[/:user_id]',
@@ -69,7 +69,7 @@ return array(
                                 ],
                             'delete'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
                                             'route'    => '/delete(/:user_id]',
@@ -107,7 +107,7 @@ return array(
                                 ],
                             'edit'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
                                             'route'    => '/edit[/:ski-level_id]',
@@ -128,10 +128,10 @@ return array(
                                 ],
                             'delete'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
-                                            'route'    => '/delete(/:ski-level_id]',
+                                            'route'    => '/delete[/:ski-level_id]',
                                             'defaults' => ['action' => 'delete']
                                         ],
                                     'constraints' => array(
@@ -166,7 +166,7 @@ return array(
                                 ],
                             'edit'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
                                             'route'    => '/edit[/:ski_id]',
@@ -187,10 +187,10 @@ return array(
                                 ],
                             'delete'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
-                                            'route'    => '/delete(/:ski_id]',
+                                            'route'    => '/delete[/:ski_id]',
                                             'defaults' => ['action' => 'delete']
                                         ],
                                     'constraints' => array(

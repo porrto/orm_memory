@@ -40,7 +40,17 @@ class SkiLevelController extends AbstractActionController
         /** @var \Application\Form\SkiLevel $form */
         $form = $serviceLocator->get('formElementManager')->get('application.form.skiLevel');
 
-        $data = $this->prg();
+        if ($this->params()->fromRoute('ski-level_id')) {
+
+            /** @var \Application\Entity\SkiLevel $skiLevel */
+            $skiLevel = $serviceLocator
+                ->get('entity_manager')
+                ->getRepository('Application\Entity\SkiLevel')
+                ->find($this->params()->fromRoute('ski-level_id'));
+
+            $form->bind($skiLevel);
+        }
+            $data = $this->prg();
 
         if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
             return $data;
@@ -50,7 +60,6 @@ class SkiLevelController extends AbstractActionController
             $form->setData($data);
             if ($form->isValid()) {
 
-                /** @var \Application\Entity\SkiLevel $skiLevel */
                 $skiLevel = $form->getData();
 
                 /**@var \Application\Service\SkiLevel $skiLevelService */

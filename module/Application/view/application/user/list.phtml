@@ -20,6 +20,7 @@
                         <th><?=$this->translate('__user_sex')?></th>
                         <th><?=$this->translate('__user_size')?></th>
                         <th><?=$this->translate('__user_ski_level')?></th>
+                        <th><?=$this->translate('__label_action')?></th>
                     </tr>
                     </thead>
 
@@ -32,6 +33,7 @@
                         <th><?=$this->translate('__user_sex')?></th>
                         <th><?=$this->translate('__user_size')?></th>
                         <th><?=$this->translate('__user_ski_level')?></th>
+                        <th><?=$this->translate('__label_action')?></th>
                     </tr>
                     </tfoot>
 
@@ -51,7 +53,18 @@
                             <td><?=$user->getAge()?></td>
                             <td><?=$user->getSex()?></td>
                             <td><?=$user->getSize()?></td>
-                            <td><?=$user->getSkiLevel()->getName()?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="<?=$this->url('user/edit',array('ski_level_id'=>$user->getId()))?>" type="button"
+                                       class="btn btn-default" data-toggle="tooltip" data-placement="top"
+                                       title="<?=$this->translate('__label_ski_level_edit')?>"><i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="<?=$this->url('user/delete',array('ski_level_id'=>$user->getId()))?>" type="button"
+                                       class="btn btn-default" data-toggle="tooltip" data-placement="top"
+                                       title="<?=$this->translate('__label_ski_level_delete')?>"><i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                         <?php
                     }
