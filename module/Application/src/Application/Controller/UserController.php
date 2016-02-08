@@ -17,11 +17,12 @@ class UserController  extends AbstractActionController
 
         $serviceLocator = $this->getServiceLocator();
 
-        /** @var \Application\Entity\User $users */
-        $users = $serviceLocator
+        /** @var \Application\Mapper\User $userMapper */
+        $userMapper = $serviceLocator
             ->get('entity_manager')
-            ->getRepository('Application\Entity\User')
-            ->findAll();
+            ->getRepository('Application\Entity\User');
+
+        $users = $userMapper->findForAge();
 
         $viewModel =  new ViewModel(array(
             'users' => $users,
