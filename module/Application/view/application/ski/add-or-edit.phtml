@@ -6,7 +6,7 @@ $form->prepare();
 <?= $this->form()->openTag($form); ?>
 <div class="row">
     <div class=" col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
-        <div class="form-group form-group-default required"">
+        <div class="form-group form-group-default required">
         <?= $this->formLabel($form->get('name')); ?>
         <?= $this->formElement($form->get('name')); ?>
         <span class="help-block errors"><?= $this->formElementErrors($form->get('name')); ?></span>
