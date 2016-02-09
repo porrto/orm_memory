@@ -25,15 +25,17 @@ class Ski
     /** @ORM\Column(type="boolean", options={"default" = true}) */
     protected $isNew;
 
-    /** @ORM\Column(type="datetime") */
-    protected $purchaseDate;
-
-    /** @ORM\ManyToOne(targetEntity="Application\Entity\User", inversedBy="ski", cascade={"persist"})   */
-    protected $user;
+    /** @ORM\ManyToMany(targetEntity="Application\Entity\User", inversedBy="skis")
+     *  @ORM\JoinTable(name="skis_users",
+     *     joinColumns={@ORM\JoinColumn(name="ski_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      ))
+     */
+    protected $users;
 
     function __construct()
     {
-        $this->purchaseDate = new \DateTime();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -119,16 +121,35 @@ class Ski
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getUsers()
     {
-        return $this->user;
+        return $this->users;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $users
      */
-    public function setUser($user)
+    public function setUsers($users)
     {
-        $this->user = $user;
+        $this->users = $users;
+    }
+
+    public function addUser($user)
+    {
+        if (is_array($user) || $user instanceof ArrayCollection) {
+            foreach ($user as $userElement) {
+                $this->addUser($userElement);
+            }
+        } else {
+            if (!$this->users->contains($user))
+                $this->users->add($user);
+        }
+    }
+
+    public function deleteUser($user)
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
     }
 }

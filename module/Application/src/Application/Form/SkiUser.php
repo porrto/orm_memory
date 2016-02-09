@@ -8,7 +8,7 @@ use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
 
-class Ski extends Form implements InputFilterProviderInterface, ObjectManagerAwareInterface
+class SkiUser extends Form implements InputFilterProviderInterface, ObjectManagerAwareInterface
 {
 
     use ObjectManagerAwareTrait;
@@ -21,39 +21,37 @@ class Ski extends Form implements InputFilterProviderInterface, ObjectManagerAwa
         $this->setAttribute('role', 'form');
 
         $this->add(array(
-            'type' => 'text',
-            'name' => 'name',
-            'attributes' => ['class' => 'form-control'],
-            'options' => array(
-                'label' => '__ski_name',
+            'name' => 'user',
+            'type' => 'objectselect',
+            'attributes' => array(
+                'class' => 'select2 full-width',
             ),
+            'options' => array(
+                'label' => '__label_user',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                ),
+                'object_manager' => $this->getObjectManager(),
+                'target_class' => 'Application\Entity\User',
+                'property' => 'name'
+            )
         ));
 
         $this->add(array(
-            'type' => 'number',
-            'name' => 'length',
-            'attributes' => ['class' => 'form-control'],
-            'options' => array(
-                'label' => '__ski_length',
+            'name' => 'ski',
+            'type' => 'objectselect',
+            'attributes' => array(
+                'class' => 'select2 full-width',
             ),
-        ));
-
-        $this->add(array(
-            'type' => 'checkbox',
-            'name' => 'isNew',
-            'attributes' => ['class' => 'checkbox'],
             'options' => array(
-                'label' => '__ski_is_new',
-            ),
-        ));
-
-        $this->add(array(
-            'type' => 'date',
-            'name' => 'purchaseDate',
-            'attributes' => ['class' => 'form-control'],
-            'options' => array(
-                'label' => '__ski_purchase_date',
-            ),
+                'label' => '__list_ski',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                ),
+                'object_manager' => $this->getObjectManager(),
+                'target_class' => 'Application\Entity\Ski',
+                'property' => 'name'
+            )
         ));
 
         $this->add(array(
@@ -72,16 +70,10 @@ class Ski extends Form implements InputFilterProviderInterface, ObjectManagerAwa
     public function getInputFilterSpecification()
     {
         return array(
-            'name' => array(
-                'required' => true
-            ),
-            'isNew' => array(
+            'user' => array(
                 'required' => false
             ),
-            'length' => array(
-                'required' => false
-            ),
-            'purchaseDate' => array(
+            'ski' => array(
                 'required' => false
             ),
         );

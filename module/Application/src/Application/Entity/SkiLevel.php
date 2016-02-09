@@ -26,7 +26,7 @@ class SkiLevel
     /** @ORM\Column(type="string") */
     protected $name;
 
-    /** @ORM\OneToMany(targetEntity="Application\Entity\User", mappedBy="user")   */
+    /** @ORM\OneToMany(targetEntity="Application\Entity\User", mappedBy="skiLevel")   */
     protected $user;
 
     public function __construct(){

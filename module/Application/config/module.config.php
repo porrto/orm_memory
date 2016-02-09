@@ -164,6 +164,15 @@ return array(
                                             'defaults' => ['action' => 'add-or-edit']
                                         ]
                                 ],
+                            'add-user'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/add-user',
+                                            'defaults' => ['action' => 'add-user']
+                                        ]
+                                ],
                             'edit'  =>
                                 [
                                     'type'    => 'Segment',
@@ -197,7 +206,7 @@ return array(
                                         'ski_id' => '[0-9]+'
                                     ),
                                 ],
-                        ]
+                        ],
                 ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new

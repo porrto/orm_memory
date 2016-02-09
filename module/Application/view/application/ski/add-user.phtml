@@ -1,0 +1,29 @@
+<?php
+/** @var \Application\Form\Ski $form */
+$form = $this->form;
+$form->prepare();
+?>
+<?= $this->form()->openTag($form); ?>
+<div class="row">
+    <div class=" col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
+        <div class="form-group form-group-default required"">
+        <?= $this->formLabel($form->get('user')); ?>
+        <?= $this->formElement($form->get('user')); ?>
+        <span class="help-block errors"><?= $this->formElementErrors($form->get('user')); ?></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class=" col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
+        <div class="form-group form-group-default required"">
+        <?= $this->formLabel($form->get('ski')); ?>
+        <?= $this->formElement($form->get('ski')); ?>
+        <span class="help-block errors"><?= $this->formElementErrors($form->get('ski')); ?></span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-4 col-md-offset-2 col-md-4 col-sm-offset-2 col-sm-4 col-xs-offset-1 col-xs-10">
+        <?= $this->formElement($form->get('submit')->setValue('__label_save_ski')); ?>
+    </div>
+</div>

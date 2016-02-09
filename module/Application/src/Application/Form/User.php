@@ -48,15 +48,6 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
         ));
 
         $this->add(array(
-            'type' => 'text',
-            'name' => 'sex',
-            'attributes' => ['class' => 'form-control'],
-            'options' => array(
-                'label' => '__user_sex',
-            ),
-        ));
-
-        $this->add(array(
             'type' => 'number',
             'name' => 'size',
             'attributes' => ['class' => 'form-control'],
@@ -83,6 +74,20 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
         ));
 
         $this->add(array(
+            'type' => 'select',
+            'name' => 'sex',
+            'attributes' => ['class' => 'select2 full-width'],
+            'options' => array(
+                'label' => '__user_sex',
+                'empty_option' => '__label_select_sex',
+                'value_options' => array(
+                    \Application\Entity\User::SEX_F => \Application\Entity\User::SEX_F,
+                    \Application\Entity\User::SEX_M => \Application\Entity\User::SEX_M,
+                ),
+            )
+        ));
+
+        $this->add(array(
             'type' => 'submit',
             'name' => 'submit',
             'attributes' => ['class' => 'btn btn-success']
@@ -102,10 +107,19 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
                 'required' => true
             ),
             'lastName' => array(
-                'required' => false
+                'required' => true
+            ),
+            'age' => array(
+                'required' => true
+            ),
+            'size' => array(
+                'required' => true
             ),
             'skiLevel' => array(
-                'required' => false
+                'required' => true
+            ),
+            'sex' => array(
+                'required' => true
             ),
         );
     }

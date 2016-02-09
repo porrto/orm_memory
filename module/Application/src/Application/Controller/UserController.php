@@ -44,6 +44,17 @@ class UserController  extends AbstractActionController
 
         $userService->addSkiLevelToUserForm($form);
 
+        if ($this->params()->fromRoute('user_id')) {
+
+            /** @var \Application\Entity\User $user */
+            $user = $serviceLocator
+                ->get('entity_manager')
+                ->getRepository('Application\Entity\User')
+                ->find($this->params()->fromRoute('user_id'));
+
+            $form->bind($user);
+        }
+
         $data = $this->prg();
 
         if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
@@ -74,6 +85,24 @@ class UserController  extends AbstractActionController
 
     public function deleteAction() {
 
+        $serviceLocator = $this->getServiceLocator();
+
+        $userId = $this->params()->fromRoute('user_id');
+
+        if ($userId) {
+            $em = $this->getServiceLocator()->get('entity_manager');
+
+            /** @var \Application\Entity\User $userToRemove */
+            $userToRemove = $em->getRepository('Application\Entity\User')
+                ->find($userId);
+
+            if (!is_null($userToRemove)) {
+                /**@var \Application\Service\User $userService */
+                $userService = $serviceLocator->get('application.service.user');
+                $userService->delete($userToRemove);
+            }
+        }
+        $this->redirect()->toRoute('user/list');
     }
 
 }

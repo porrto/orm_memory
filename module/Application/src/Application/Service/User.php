@@ -5,6 +5,7 @@ namespace Application\Service;
 use Doctrine\ORM\EntityManager;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerAwareTrait;
+use Zend\Form\Form;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
 

@@ -1,5 +1,6 @@
 <?php
 namespace Application\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -7,6 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+
+    const SEX_M = 'M';
+    const SEX_F = 'F';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -29,11 +34,23 @@ class User
     /** @ORM\Column(type="integer") */
     protected $size;
 
-    /** @ORM\OneToMany(targetEntity="Application\Entity\Ski", mappedBy="user", cascade={"persist"})   */
-    protected $ski;
+    /** @ORM\Column(type="datetime", nullable=true) */
+    protected $created;
+
+    /** @ORM\ManyToMany(targetEntity="Application\Entity\Ski",
+     *     mappedBy="users",
+     *     cascade={"persist", "remove"},
+     *     fetch="EXTRA_LAZY")
+     */
+    protected $skis;
 
     /** @ORM\ManyToOne(targetEntity="Application\Entity\SkiLevel", inversedBy="user")   */
     protected $skiLevel;
+
+    public function __construct() {
+        $this->skis = new ArrayCollection();
+        $this->created = new \DateTime();
+    }
 
     /**
      * @return mixed
@@ -134,22 +151,6 @@ class User
     /**
      * @return mixed
      */
-    public function getSki()
-    {
-        return $this->ski;
-    }
-
-    /**
-     * @param mixed $ski
-     */
-    public function setSki($ski)
-    {
-        $this->ski = $ski;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSkiLevel()
     {
         return $this->skiLevel;
@@ -162,4 +163,37 @@ class User
     {
         $this->skiLevel = $skiLevel;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkis()
+    {
+        return $this->skis;
+    }
+
+    /**
+     * @param mixed $skis
+     */
+    public function setSkis($skis)
+    {
+        $this->skis = $skis;
+    }
+
 }

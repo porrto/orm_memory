@@ -2,8 +2,9 @@
     <div class="panel-heading">
         <div class="pull-right">
             <div class="col-xs-12">
-                <a href="<?= $this->url('ski/add')?>" id="add-club" class="btn btn-primary btn-cons">
-                    <i class="fa fa-plus"></i> <?=$this->translate('__label_ski_add')?></a>
+                <a href="<?= $this->url('ski/add')?>" id="add-ski" class="btn btn-primary btn-cons">
+                    <i class="fa fa-plus"></i> <?=$this->translate('__label_ski_add')?>
+                </a>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,8 +18,6 @@
                         <th><?=$this->translate('__ski_name')?></th>
                         <th><?=$this->translate('__ski_length')?></th>
                         <th><?=$this->translate('__ski_is_new')?></th>
-                        <th><?=$this->translate('__ski_purchase_date')?></th>
-                        <th><?=$this->translate('__ski_owner')?></th>
                         <th><?=$this->translate('__label_action')?></th>
                     </tr>
                     </thead>
@@ -29,8 +28,6 @@
                         <th><?=$this->translate('__ski_name')?></th>
                         <th><?=$this->translate('__ski_length')?></th>
                         <th><?=$this->translate('__ski_is_new')?></th>
-                        <th><?=$this->translate('__ski_purchase_date')?></th>
-                        <th><?=$this->translate('__ski_owner')?></th>
                         <th><?=$this->translate('__label_action')?></th>
                     </tr>
                     </tfoot>
@@ -50,8 +47,6 @@
                             <td><?=$ski->getLength()?></td>
                             <td>
                                 <?= $ski->getIsNew() == true ? 'Oui' : 'Non' ?></td>
-                            <td><?=$this->dateFormat($ski->getPurchaseDate(), IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, $this->locale());?></td>
-                            <td><?=$ski->getUser()->getFirstName()?></td>
                             <td>
                                 <div class="btn-group">
                                     <a href="<?=$this->url('ski/edit',array('ski_id'=>$ski->getId()))?>" type="button"

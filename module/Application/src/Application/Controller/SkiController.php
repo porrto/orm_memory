@@ -43,8 +43,6 @@ class SkiController extends AbstractActionController
         /**@var \Application\Service\Ski $skiService */
         $skiService = $serviceLocator->get('application.service.ski');
 
-        $skiService->addUserToSkiForm($form);
-
         $data = $this->prg();
 
         if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
@@ -58,6 +56,7 @@ class SkiController extends AbstractActionController
                 /** @var \Application\Entity\Ski $ski */
                 $ski = $form->getData();
 
+                //$skiService->addUserForSki($form, $ski);
                 $skiService->save($ski);
 
                 $this->redirect()->toRoute('ski/list');
@@ -71,6 +70,51 @@ class SkiController extends AbstractActionController
         $viewModel->setTemplate('application/ski/add-or-edit');
 
         return $viewModel;
+    }
+
+    public function addUserAction() {
+        $serviceLocator = $this->getServiceLocator();
+
+        /** @var \Application\Form\SkiUser $form */
+        $form = $serviceLocator->get('formElementManager')->get('application.form.ski.user');
+        /**@var \Application\Service\Ski $skiService */
+        $skiService = $serviceLocator->get('application.service.ski');
+
+        $skiService->addUserToSkiForm($form);
+        $skiService->addSkiListForm($form);
+
+        $data = $this->prg();
+
+        if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
+            return $data;
+        }
+
+        if ($data != false) {
+
+            $form->setData($data);
+            if ($form->isValid()) {
+
+                /** @var \Application\Entity\Ski $ski */
+                $ski = $serviceLocator
+                    ->get('entity_manager')
+                    ->getRepository('Application\Entity\Ski')
+                    ->find($form->get('ski')->getValue());
+
+                $skiService->addUserForSki($form, $ski);
+                $skiService->save($ski);
+
+                $this->redirect()->toRoute('ski/list');
+            }
+        }
+
+        $viewModel =  new ViewModel(array(
+            'form' => $form,
+        ));
+
+        $viewModel->setTemplate('application/ski/add-user');
+
+        return $viewModel;
+
     }
 
     public function deleteAction() {
