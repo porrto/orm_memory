@@ -64,10 +64,10 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'firstName', 'lastName', 'age', 'sex', 'size', 'ski', 'skiLevel');
+            return array('__isInitialized__', 'id', 'firstName', 'lastName', 'age', 'sex', 'size', 'created', 'skis', 'skiLevel', 'pole');
         }
 
-        return array('__isInitialized__', 'id', 'firstName', 'lastName', 'age', 'sex', 'size', 'ski', 'skiLevel');
+        return array('__isInitialized__', 'id', 'firstName', 'lastName', 'age', 'sex', 'size', 'created', 'skis', 'skiLevel', 'pole');
     }
 
     /**
@@ -312,28 +312,6 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getSki()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSki', array());
-
-        return parent::getSki();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setSki($ski)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSki', array($ski));
-
-        return parent::setSki($ski);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getSkiLevel()
     {
 
@@ -351,6 +329,72 @@ class User extends \Application\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSkiLevel', array($skiLevel));
 
         return parent::setSkiLevel($skiLevel);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreated()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', array());
+
+        return parent::getCreated();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreated($created)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', array($created));
+
+        return parent::setCreated($created);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSkis()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSkis', array());
+
+        return parent::getSkis();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSkis($skis)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSkis', array($skis));
+
+        return parent::setSkis($skis);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPole()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPole', array());
+
+        return parent::getPole();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPole($pole)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPole', array($pole));
+
+        return parent::setPole($pole);
     }
 
 }

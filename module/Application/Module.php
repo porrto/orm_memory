@@ -9,6 +9,7 @@
 
 namespace Application;
 
+use Application\Form\Pole;
 use Application\Form\Ski;
 use Application\Form\SkiLevel;
 use Application\Form\SkiUser;
@@ -81,6 +82,15 @@ class Module
                     $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
                     return $form;
                 },
+                'application.form.pole' => function (\Zend\Form\FormElementManager $fem) {
+                    $em = $fem->getServiceLocator()->get('entity_manager');
+
+                    $form = new Pole();
+                    $form->setObjectManager($em);
+                    $form->setObject(new \Application\Entity\Pole());
+                    $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($em));
+                    return $form;
+                },
             ],
         );
     }
@@ -91,6 +101,7 @@ class Module
                 'application.service.user' => 'Application\Service\User',
                 'application.service.skiLevel' => 'Application\Service\SkiLevel',
                 'application.service.ski' => 'Application\Service\Ski',
+                'application.service.pole' => 'Application\Service\Pole',
             )
         );
     }

@@ -7,13 +7,31 @@ class User extends EntityRepository
 {
 
     /**
-     *
+     * @param Integer $ageMax
      * @return array
      */
-    public function findForAge()
+    public function QueryBuilderFindForAge($ageMax)
     {
-        $dql = 'SELECT u FROM Application\Entity\User u  WHERE u.age < 30';
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+            ->from('Application\Entity\User', 'u');
+
+        $qb->Where('u.age <= :ageMax');
+        $qb->setParameter('ageMax',$ageMax);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param Integer $ageMax
+     * @return array
+     */
+    public function dqlFindForAgeMax($ageMax)
+    {
+        $dql = 'SELECT u FROM Application\Entity\User u  WHERE u.age <= :ageMax';
         $query = $this->getEntityManager()->createQuery($dql);
+        $query->setParameter('ageMax', $ageMax);
+
         return $query->getResult();
     }
 }

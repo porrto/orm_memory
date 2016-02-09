@@ -17,16 +17,35 @@ class UserController  extends AbstractActionController
 
         $serviceLocator = $this->getServiceLocator();
 
+        /** @var \Application\Form\User $form */
+        $form = $serviceLocator->get('formElementManager')->get('application.form.user');
         /** @var \Application\Mapper\User $userMapper */
         $userMapper = $serviceLocator
             ->get('entity_manager')
             ->getRepository('Application\Entity\User');
 
-        $users = $userMapper->findForAge();
 
-        $viewModel =  new ViewModel(array(
-            'users' => $users,
-        ));
+        if ($this->params()->fromRoute('ageMax')) {
+
+            $ageMax = $this->params()->fromRoute('ageMax');
+
+            $form->get('ageMax')->setValue($ageMax);
+
+            $users = $userMapper->QueryBuilderFindForAge($ageMax);
+
+            $viewModel = new ViewModel(array(
+                "users"   => $users,
+                'form'  => $form,
+            ));
+
+        }else{
+            $users = $userMapper->QueryBuilderFindForAge(99);
+
+            $viewModel = new ViewModel(array(
+                'users' => $users,
+                'form'  => $form,
+            ));
+        }
 
         $viewModel->setTemplate('application/user/list');
 

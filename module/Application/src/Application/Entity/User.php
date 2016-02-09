@@ -39,13 +39,17 @@ class User
 
     /** @ORM\ManyToMany(targetEntity="Application\Entity\Ski",
      *     mappedBy="users",
-     *     cascade={"persist", "remove"},
      *     fetch="EXTRA_LAZY")
      */
     protected $skis;
 
     /** @ORM\ManyToOne(targetEntity="Application\Entity\SkiLevel", inversedBy="user")   */
     protected $skiLevel;
+
+    /** @ORM\OneToOne(targetEntity="Application\Entity\Pole",
+     *      mappedBy="user", cascade={"remove"})
+     */
+    protected $pole;
 
     public function __construct() {
         $this->skis = new ArrayCollection();
@@ -194,6 +198,22 @@ class User
     public function setSkis($skis)
     {
         $this->skis = $skis;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPole()
+    {
+        return $this->pole;
+    }
+
+    /**
+     * @param mixed $pole
+     */
+    public function setPole($pole)
+    {
+        $this->pole = $pole;
     }
 
 }

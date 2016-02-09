@@ -88,6 +88,21 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
         ));
 
         $this->add(array(
+            'type' => 'select',
+            'name' => 'ageMax',
+            'attributes' => ['class' => 'select2 full-width', 'id' => 'ageMax'],
+            'options' => array(
+                'label' => '__label_choice_max_age',
+                'empty_option' => '__label_select_age',
+                'value_options' => array(
+                    '25' => '25',
+                    '50' => '50',
+                ),
+            )
+        ));
+
+
+        $this->add(array(
             'type' => 'submit',
             'name' => 'submit',
             'attributes' => ['class' => 'btn btn-success']
@@ -120,6 +135,9 @@ class User extends Form implements InputFilterProviderInterface, ObjectManagerAw
             ),
             'sex' => array(
                 'required' => true
+            ),
+            'ageMax' => array(
+                'required' => false
             ),
         );
     }

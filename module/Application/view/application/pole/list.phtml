@@ -1,0 +1,71 @@
+<div class="panel panel-transparent">
+    <div class="panel-heading">
+        <div class="pull-right">
+            <div class="col-xs-12">
+                <a href="<?= $this->url('pole/add')?>" id="add-pole" class="btn btn-primary btn-cons">
+                    <i class="fa fa-plus"></i> <?=$this->translate('__label_pole_add')?>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div id="tableWithDynamicRows_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="table-responsive">
+                <table id="poles-table" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__pole_name')?></th>
+                        <th><?=$this->translate('__pole_length')?></th>
+                        <th><?=$this->translate('__pole_user_owner')?></th>
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+                        <th><?=$this->translate('__label_id')?></th>
+                        <th><?=$this->translate('__pole_name')?></th>
+                        <th><?=$this->translate('__pole_length')?></th>
+                        <th><?=$this->translate('__pole_user_owner')?></th>
+                    </tr>
+                    </tfoot>
+
+                    <tbody>
+
+                    <?php
+
+                    /**@var  \Application\Entity\Pole $pole */
+                    foreach($this->poles as $pole)
+                    {
+                        ?>
+
+                        <tr>
+                            <td><?=$pole->getId()?></td>
+                            <td><?=$pole->getName()?></td>
+                            <td><?=$pole->getLength()?></td>
+                            <td><?=$pole->getUser()->getFirstName()?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="<?=$this->url('pole/edit',array('pole_id'=>$pole->getId()))?>" type="button"
+                                       class="btn btn-default" data-toggle="tooltip" data-placement="top"
+                                       title="<?=$this->translate('__label_pole_edit')?>"><i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="<?=$this->url('pole/delete',array('pole_id'=>$pole->getId()))?>" type="button"
+                                       class="btn btn-default" data-toggle="tooltip" data-placement="top"
+                                       title="<?=$this->translate('__label_pole_delete')?>"><i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

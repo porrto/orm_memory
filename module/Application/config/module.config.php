@@ -60,12 +60,15 @@ return array(
                                 ],
                             'list'  =>
                                 [
-                                    'type'    => 'Literal',
+                                    'type'    => 'Segment',
                                     'options' =>
                                         [
-                                            'route'    => '/list',
+                                            'route'    => '/list[/:ageMax]',
                                             'defaults' => ['action' => 'list']
-                                        ]
+                                        ],
+                                    'constraints' => array(
+                                        'ageMax' => '[0-9]+'
+                                    ),
                                 ],
                             'delete'  =>
                                 [
@@ -208,6 +211,74 @@ return array(
                                 ],
                         ],
                 ],
+            'pole'        =>
+                [
+                    'type'          => 'Literal',
+                    'options'       =>
+                        [
+                            'route'    => '/pole',
+                            'defaults' =>
+                                [
+                                    '__NAMESPACE__' => 'Application\Controller',
+                                    'controller'    => 'Pole'
+                                ]
+                        ],
+                    'may_terminate' => false,
+                    'child_routes'  =>
+                        [
+                            'add'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/add',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ]
+                                ],
+                            'add-user'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/add-user',
+                                            'defaults' => ['action' => 'add-user']
+                                        ]
+                                ],
+                            'edit'  =>
+                                [
+                                    'type'    => 'Segment',
+                                    'options' =>
+                                        [
+                                            'route'    => '/edit[/:pole_id]',
+                                            'defaults' => ['action' => 'add-or-edit']
+                                        ],
+                                    'constraints' => array(
+                                        'pole_id' => '[0-9]+'
+                                    ),
+                                ],
+                            'list'  =>
+                                [
+                                    'type'    => 'Literal',
+                                    'options' =>
+                                        [
+                                            'route'    => '/list',
+                                            'defaults' => ['action' => 'list']
+                                        ]
+                                ],
+                            'delete'  =>
+                                [
+                                    'type'    => 'Segment',
+                                    'options' =>
+                                        [
+                                            'route'    => '/delete[/:pole_id]',
+                                            'defaults' => ['action' => 'delete']
+                                        ],
+                                    'constraints' => array(
+                                        'pole_id' => '[0-9]+'
+                                    ),
+                                ],
+                        ],
+                ],
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -265,6 +336,7 @@ return array(
             'Application\Controller\User' => Controller\UserController::class,
             'Application\Controller\SkiLevel' => Controller\SkiLevelController::class,
             'Application\Controller\Ski' => Controller\SkiController::class,
+            'Application\Controller\Pole' => Controller\PoleController::class,
         ),
     ),
     'view_manager' => array(

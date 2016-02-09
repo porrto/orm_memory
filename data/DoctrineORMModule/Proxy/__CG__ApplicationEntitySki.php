@@ -64,10 +64,10 @@ class Ski extends \Application\Entity\Ski implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'name', 'length', 'isNew', 'purchaseDate', 'user');
+            return array('__isInitialized__', 'id', 'name', 'length', 'isNew', 'users');
         }
 
-        return array('__isInitialized__', 'id', 'name', 'length', 'isNew', 'purchaseDate', 'user');
+        return array('__isInitialized__', 'id', 'name', 'length', 'isNew', 'users');
     }
 
     /**
@@ -290,23 +290,45 @@ class Ski extends \Application\Entity\Ski implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getUser()
+    public function getUsers()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsers', array());
 
-        return parent::getUser();
+        return parent::getUsers();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setUser($user)
+    public function setUsers($users)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUsers', array($users));
 
-        return parent::setUser($user);
+        return parent::setUsers($users);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addUser($user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addUser', array($user));
+
+        return parent::addUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteUser($user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'deleteUser', array($user));
+
+        return parent::deleteUser($user);
     }
 
 }

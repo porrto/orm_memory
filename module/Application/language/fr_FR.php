@@ -26,5 +26,11 @@ return array(
     '__label_action'            =>      'Actions',
     '__list_ski'                =>      'Skis disponibles',
     '__label_ski_user_add'      =>      'Acheter une paire ski',
+    '__pole_name'               =>      'Nom',
+    '__pole_length'             =>      'Taille',
+    '__pole_user_owner'         =>      'Utilisateur',
+    '__label_pole_add'          =>      'Ajouter une paire de bâton',
+    '__label_choice_max_age'    =>      'Age maximum :',
+    '__label_select_age'        =>      'Choisissez un âge',
 
 );

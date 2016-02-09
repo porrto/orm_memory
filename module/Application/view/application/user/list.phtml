@@ -1,3 +1,7 @@
+<?php
+/** @var \Application\Form\User $form */
+$form = $this->form;
+?>
 <div class="panel panel-transparent">
     <div class="panel-heading">
         <div class="pull-right">
@@ -13,7 +17,10 @@
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
-        <div id="tableWithDynamicRows_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="table-responsive">
+        <div id="tableWithDynamicRows_wrapper" class="dataTables_wrapper form-inline no-footer">
+            <div class="table-responsive">
+                <?= $this->formLabel($form->get('ageMax')); ?>
+                <?= $this->formSelect($form->get('ageMax')); ?>
                 <table id="users-table" class="table table-hover" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -79,4 +86,11 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
 
+
+<?php
+$this->inlineScript()
+    ->appendFile('/js/Application/User/list.js')
+?>
