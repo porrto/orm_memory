@@ -41,11 +41,11 @@
                             <td><?=$skiLevel->getName()?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?=$this->url('ski-level/edit',array('ski_level_id'=>$skiLevel->getId()))?>" type="button"
+                                    <a href="<?=$this->url('ski-level/edit',array('ski-level_id'=>$skiLevel->getId()))?>" type="button"
                                        class="btn btn-default" data-toggle="tooltip" data-placement="top"
                                        title="<?=$this->translate('__label_ski_level_edit')?>"><i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?=$this->url('ski-level/delete',array('ski_level_id'=>$skiLevel->getId()))?>" type="button"
+                                    <a href="<?=$this->url('ski-level/delete',array('ski-level_id'=>$skiLevel->getId()))?>" type="button"
                                        class="btn btn-default" data-toggle="tooltip" data-placement="top"
                                        title="<?=$this->translate('__label_ski_level_delete')?>"><i class="fa fa-trash-o"></i>
                                     </a>

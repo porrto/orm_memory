@@ -53,6 +53,7 @@
                             <td><?=$user->getAge()?></td>
                             <td><?=$user->getSex()?></td>
                             <td><?=$user->getSize()?></td>
+                            <td><?=$user->getSkiLevel()->getName()?></td>
                             <td>
                                 <div class="btn-group">
                                     <a href="<?=$this->url('user/edit',array('ski_level_id'=>$user->getId()))?>" type="button"

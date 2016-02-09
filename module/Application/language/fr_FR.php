@@ -19,7 +19,7 @@ return array(
     '__ski_owner'               =>      'Utilisateur propriétaire',
     '__label_ski_add'           =>      'Ajouter une paire de ski',
     '__label_save_ski'          =>      'Enregistrer la paire de ski',
-    '__label_ski_level_edit'    =>      'Edit le niveau de ski',
+    '__label_ski_level_edit'    =>      'Editer le niveau de ski',
     '__label_ski_level_delete'  =>      'Supprimer le niveau de ski',
     '__label_action'            =>      'Actions',
 

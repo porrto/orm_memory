@@ -54,11 +54,11 @@
                             <td><?=$ski->getUser()->getFirstName()?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?=$this->url('ski/edit',array('ski_level_id'=>$ski->getId()))?>" type="button"
+                                    <a href="<?=$this->url('ski/edit',array('ski_id'=>$ski->getId()))?>" type="button"
                                        class="btn btn-default" data-toggle="tooltip" data-placement="top"
                                        title="<?=$this->translate('__label_ski_level_edit')?>"><i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?=$this->url('ski/delete',array('ski_level_id'=>$ski->getId()))?>" type="button"
+                                    <a href="<?=$this->url('ski/delete',array('ski_id'=>$ski->getId()))?>" type="button"
                                        class="btn btn-default" data-toggle="tooltip" data-placement="top"
                                        title="<?=$this->translate('__label_ski_level_delete')?>"><i class="fa fa-trash-o"></i>
                                     </a>

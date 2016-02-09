@@ -9,6 +9,7 @@
 namespace Application\Controller;
 
 
+use Zend\Mvc\Application;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -82,5 +83,23 @@ class SkiLevelController extends AbstractActionController
 
     public function deleteAction() {
 
+        $serviceLocator = $this->getServiceLocator();
+
+        $skiLevelId = $this->params()->fromRoute('ski-level_id');
+
+        if ($skiLevelId) {
+            $em = $this->getServiceLocator()->get('entity_manager');
+
+            /** @var \Application\Entity\SkiLevel $skiLevelToRemove */
+            $skiLevelToRemove = $em->getRepository('Application\Entity\SkiLevel')
+                ->find($skiLevelId);
+
+            if (!is_null($skiLevelToRemove)) {
+                /**@var \Application\Service\SkiLevel $skiLevelService */
+                $skiLevelService = $serviceLocator->get('application.service.skiLevel');
+                $skiLevelService->delete($skiLevelToRemove);
+            }
+        }
+        $this->redirect()->toRoute('ski-level/list');
     }
 }

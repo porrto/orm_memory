@@ -72,7 +72,7 @@ return array(
                                     'type'    => 'Segment',
                                     'options' =>
                                         [
-                                            'route'    => '/delete(/:user_id]',
+                                            'route'    => '/delete[/:user_id]',
                                             'defaults' => ['action' => 'delete']
                                         ],
                                     'constraints' => array(
