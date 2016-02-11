@@ -105,22 +105,6 @@ class Ski
     /**
      * @return mixed
      */
-    public function getPurchaseDate()
-    {
-        return $this->purchaseDate;
-    }
-
-    /**
-     * @param mixed $purchaseDate
-     */
-    public function setPurchaseDate($purchaseDate)
-    {
-        $this->purchaseDate = $purchaseDate;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getUsers()
     {
         return $this->users;
