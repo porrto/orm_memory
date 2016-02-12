@@ -14,4 +14,15 @@ use Doctrine\ORM\EntityRepository;
 class SkiLevel extends EntityRepository
 {
 
+    public function findUserSkiLevel(){
+
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('sl')
+            ->from('Application\Entity\SkiLevel', 'sl');
+
+        $qb->leftJoin('sl.user', 'slu');
+        $qb->addSelect('slu');
+
+        return $qb->getQuery()->getResult();
+    }
 }

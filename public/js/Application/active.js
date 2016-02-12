@@ -4,8 +4,7 @@ $(document).ready(function() {
 
     var path = window.location.pathname.split('/');
 
-    for (var i=0; i < path.length; i++){
-        switch (path[i]) {
+        switch (path[1]) {
             case "ski" :
                 $('.ski').addClass('active');
                 break;
@@ -22,5 +21,4 @@ $(document).ready(function() {
                 $('.user').addClass('active');
                 break;
         }
-    }
 });
