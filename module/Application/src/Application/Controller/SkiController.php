@@ -103,7 +103,7 @@ class SkiController extends AbstractActionController
                 $skiService->addUserForSki($form, $ski);
                 $skiService->save($ski);
 
-                $this->redirect()->toRoute('ski/list');
+                $this->redirect()->toRoute('user/list');
             }
         }
 
