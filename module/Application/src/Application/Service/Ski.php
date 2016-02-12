@@ -22,11 +22,8 @@ class Ski implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
      */
     public function save(\Application\Entity\Ski $ski)
     {
-
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $ski));
         $this->getEntityManager()->persist($ski);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array('data' => $ski));
         return true;
 
     }
@@ -45,11 +42,8 @@ class Ski implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
 
     public function delete(\Application\Entity\Ski $ski)
     {
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $ski));
         $this->getEntityManager()->remove($ski);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array());
-
     }
 
     public function addUserToSkiForm(\Application\Form\SkiUser $skiUserForm)

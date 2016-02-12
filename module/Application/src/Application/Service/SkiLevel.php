@@ -22,11 +22,8 @@ class SkiLevel implements  EventManagerAwareInterface, ServiceLocatorAwareInterf
      */
     public function save(\Application\Entity\SkiLevel $skiLevel)
     {
-
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $skiLevel));
         $this->getEntityManager()->persist($skiLevel);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array('data' => $skiLevel));
         return true;
 
     }
@@ -34,11 +31,8 @@ class SkiLevel implements  EventManagerAwareInterface, ServiceLocatorAwareInterf
 
     public function delete(\Application\Entity\SkiLevel $skiLevel)
     {
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $skiLevel));
         $this->getEntityManager()->remove($skiLevel);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array());
-
     }
 
     /**

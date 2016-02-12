@@ -23,11 +23,8 @@ class User implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
      */
     public function save(\Application\Entity\User $user)
     {
-
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $user));
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array('data' => $user));
         return true;
 
     }
@@ -35,11 +32,8 @@ class User implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
 
     public function delete(\Application\Entity\User $user)
     {
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $user));
         $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array());
-
     }
 
     public function addSkiLevelToUserForm(\Application\Form\User $userForm)

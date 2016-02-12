@@ -23,11 +23,8 @@ class Pole implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
      */
     public function save(\Application\Entity\Pole $pole)
     {
-
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $pole));
         $this->getEntityManager()->persist($pole);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array('data' => $pole));
         return true;
 
     }
@@ -35,11 +32,8 @@ class Pole implements  EventManagerAwareInterface, ServiceLocatorAwareInterface
 
     public function delete(\Application\Entity\Pole $pole)
     {
-        $this->getEventManager()->trigger(__FUNCTION__ . '.pre', array('data' => $pole));
         $this->getEntityManager()->remove($pole);
         $this->getEntityManager()->flush();
-        $this->getEventManager()->trigger(__FUNCTION__ . '.post', array());
-
     }
 
     public function addUserToPoleForm(\Application\Form\Pole $poleForm)
